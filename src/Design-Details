@@ -1,0 +1,7 @@
+CODE FLOW
+-----------
+
+1) User should first register with name and email id and password
+2) User should be able to create game
+3) User should be able to perform undo move in game
+
