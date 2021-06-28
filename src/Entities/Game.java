@@ -2,11 +2,14 @@ package Entities;
 
 import CheckWinnerStrategy.WinnerSelectionStrategy;
 
+import java.util.Stack;
+
 public class Game {
     Board gameBoard;
     Players player1;
     Players player2;
     WinnerSelectionStrategy winnerSelectionStrategy;
+    Stack<Position> gameHistory = new Stack<>();
 
     public Game(int dimension, Players player1, Players player2, WinnerSelectionStrategy winnerSelectionStrategy){
         this.gameBoard = new Board(dimension);
@@ -41,6 +44,7 @@ public class Game {
             }
             int i = position.getI();
             int j = position.getJ();
+            gameHistory.add(position);
             this.gameBoard.board[i][j]=currentPlayer.getSymbol();
             this.gameBoard.printBoard();
             boolean winner = winnerSelectionStrategy.checkWinner(this.gameBoard.board, currentPlayer.getSymbol(), position);
@@ -53,6 +57,7 @@ public class Game {
             turns++;
         }
 
+        //System.out.println(gameHistory);
         if(!gameWon)
             System.out.println("No winners try again");
     }
